@@ -8,17 +8,15 @@ import csv
 
 class mySelenium():
     
-    def __init__(self,driver_path, url, isHeadless = False):
+    def __init__(self,driver_path,url):
         self.url = 'https://'+ url
         self.driver_path = driver_path
-        self.isHeadless = isHeadless
         self.driver = None
     
-    def init_and_get_chrome_selenium_driver(self):
-        
-        options = None
-        if self.isHeadless is True:
-            options = webdriver.ChromeOptions('headless')
+    def init_chrome_driver(self,isHeadless = False):
+        options = webdriver.ChromeOptions()
+        if isHeadless is True:
+            options.add_argument('headless')
             
         self.driver = webdriver.Chrome(executable_path = self.driver_path, chrome_options = options)
     
